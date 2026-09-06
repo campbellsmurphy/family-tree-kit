@@ -1,0 +1,306 @@
+0 HEAD
+1 SOUR family-tree-kit
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Synthetic three-sided family for exercising the tools. Every person is fictional.
+0 @I1@ INDI
+1 NAME Ada Ruth /Quill/
+1 SEX F
+1 BIRT
+2 DATE 4 MAR 1990
+2 PLAC Melbourne, Victoria, Australia
+1 FAMC @F1@
+1 FAMS @F2@
+0 @I2@ INDI
+1 NAME Tomas Patrick /Quill/
+1 SEX M
+1 BIRT
+2 DATE 12 SEP 1958
+2 PLAC Tralee, Kerry, Ireland
+1 FAMC @F3@
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Ruth Elizabeth /Fenwright/
+1 SEX F
+1 BIRT
+2 DATE 30 JAN 1960
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1960, reg 1234/1960
+3 QUAY 3
+1 FAMC @F4@
+1 FAMS @F1@
+0 @I4@ INDI
+1 NAME Ben Edward /Marrow/
+1 SEX M
+1 BIRT
+2 DATE 7 JUL 1988
+2 PLAC London, England
+1 FAMC @F5@
+1 FAMS @F2@
+0 @I5@ INDI
+1 NAME Ivy /Marrow-Quill/
+1 SEX F
+1 BIRT
+2 DATE 2 FEB 2024
+2 PLAC Melbourne, Victoria, Australia
+1 FAMC @F2@
+0 @I6@ INDI
+1 NAME Patrick /Quill/
+1 SEX M
+1 BIRT
+2 DATE 1920
+2 PLAC Dingle, Kerry, Ireland
+1 DEAT
+2 DATE 1994
+2 PLAC Tralee, Kerry, Ireland
+2 SOUR @S3@
+3 PAGE Deaths, Tralee registration district, 1994, entry 88
+3 QUAY 3
+1 FAMC @F6@
+1 FAMS @F3@
+0 @I7@ INDI
+1 NAME Norah /Casey/
+1 SEX F
+1 BIRT
+2 DATE ABT 1924
+2 PLAC Cork, Ireland
+1 FAMS @F3@
+1 NOTE Searched irishgenealogy.ie civil births, CASEY Cork 1922-1926: 41 rows, none with a father named in the family story. Negative, control ran (CASEY Cork 1924 returns rows). Recorded so nobody repeats it.
+0 @I8@ INDI
+1 NAME Michael /Quill/
+1 SEX M
+1 BIRT
+2 DATE ABT 1880
+2 PLAC Kerry, Ireland
+1 FAMC @F7@
+1 FAMS @F6@
+0 @I9@ INDI
+1 NAME Harold George /Fenwright/
+1 SEX M
+1 BIRT
+2 DATE 15 MAY 1925
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1925, reg 9981/1925
+3 QUAY 3
+1 DEAT
+2 DATE 3 OCT 2001
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Deaths 2001, reg 21044/2001
+3 QUAY 3
+1 EVEN
+2 TYPE Military Service
+2 DATE 1943
+2 PLAC Australia
+2 SOUR @S2@
+3 PAGE Bendigo Advertiser, 14 Aug 1943, p.2, nla.news-article00000001
+3 QUAY 2
+1 FAMC @F8@
+1 FAMS @F4@
+0 @I10@ INDI
+1 NAME Elsie May /Barrow/
+1 SEX F
+1 BIRT
+2 DATE 1928
+2 PLAC Ballarat, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1928, reg 4410/1928
+3 QUAY 3
+1 FAMC @F9@
+1 FAMS @F4@
+0 @I11@ INDI
+1 NAME William /Fenwright/
+1 SEX M
+1 BIRT
+2 DATE 1890
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1890, reg 7702/1890
+3 QUAY 3
+1 DEAT
+2 DATE 1961
+2 PLAC Bendigo, Victoria, Australia
+1 FAMC @F10@
+1 FAMS @F8@
+0 @I12@ INDI
+1 NAME Mary Anne /Todd/
+1 SEX F
+1 BIRT
+2 DATE 1893
+2 PLAC Castlemaine, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1893, reg 3320/1893
+3 QUAY 3
+1 FAMS @F8@
+0 @I13@ INDI
+1 NAME George /Fenwright/
+1 SEX M
+1 BIRT
+2 DATE 1855
+2 PLAC Sandhurst, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Births 1855, reg 121/1855
+3 QUAY 3
+1 DEAT
+2 DATE 1930
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S2@
+3 PAGE Bendigo Advertiser, 2 Jun 1930, p.4, nla.news-article00000002
+3 QUAY 2
+1 FAMS @F10@
+0 @I14@ INDI
+1 NAME Sarah /Pike/
+1 SEX F
+1 BIRT
+2 DATE ABT 1860
+2 PLAC Kyneton, Victoria, Australia
+1 FAMS @F10@
+0 @I15@ INDI
+1 NAME Jean /Fenwright/
+1 SEX F
+1 BIRT
+2 DATE 1927
+2 PLAC Bendigo, Victoria, Australia
+1 FAMC @F8@
+0 @I16@ INDI
+1 NAME Ronald /Fenwright/
+1 SEX M
+1 BIRT
+2 DATE 1930
+2 PLAC Bendigo, Victoria, Australia
+1 FAMC @F8@
+0 @I17@ INDI
+1 NAME Albert /Barrow/
+1 SEX M
+1 BIRT
+2 DATE 1895
+2 PLAC Ballarat, Victoria, Australia
+1 FAMS @F9@
+0 @I18@ INDI
+1 NAME Florence /Mott/
+1 SEX F
+1 BIRT
+2 DATE 1899
+2 PLAC Ballarat, Victoria, Australia
+1 FAMS @F9@
+0 @I19@ INDI
+1 NAME David /Marrow/
+1 SEX M
+1 BIRT
+2 DATE 1955
+2 PLAC Calcutta, Bengal, India
+1 FAMC @F11@
+1 FAMS @F5@
+0 @I20@ INDI
+1 NAME Priya /Sen/
+1 SEX F
+1 BIRT
+2 DATE 1958
+2 PLAC Calcutta, Bengal, India
+1 FAMS @F5@
+0 @I21@ INDI
+1 NAME Edward /Marrow/
+1 SEX M
+1 BIRT
+2 DATE 1920
+2 PLAC Calcutta, Bengal, India
+1 FAMS @F11@
+0 @I22@ INDI
+1 NAME Eleanor /Cole/
+1 SEX F
+1 BIRT
+2 DATE ABT 1925
+2 PLAC India
+1 FAMS @F11@
+0 @I23@ INDI
+1 NAME John /Quill/
+1 SEX M
+1 BIRT
+2 DATE ABT 1850
+2 PLAC Kerry, Ireland
+1 FAMS @F7@
+1 _TIER imported
+1 SOUR @S4@
+2 PAGE Public member tree "Quills of Kerry", person id 0000
+2 QUAY 1
+1 NOTE IMPORTED TIER: taken from another researcher's tree, unverified. Not evidence. Promote only on a primary record naming him as Michael's father.
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 1985
+2 PLAC Melbourne, Victoria, Australia
+0 @F2@ FAM
+1 HUSB @I4@
+1 WIFE @I1@
+1 CHIL @I5@
+0 @F3@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I2@
+1 MARR
+2 DATE 1950
+2 PLAC Tralee, Kerry, Ireland
+0 @F4@ FAM
+1 HUSB @I9@
+1 WIFE @I10@
+1 CHIL @I3@
+1 MARR
+2 DATE 1952
+2 PLAC Bendigo, Victoria, Australia
+2 SOUR @S1@
+3 PAGE Marriages 1952, reg 5567/1952
+3 QUAY 3
+0 @F5@ FAM
+1 HUSB @I19@
+1 WIFE @I20@
+1 CHIL @I4@
+0 @F6@ FAM
+1 HUSB @I8@
+1 CHIL @I6@
+0 @F7@ FAM
+1 HUSB @I23@
+1 CHIL @I8@
+1 _TIER imported
+0 @F8@ FAM
+1 HUSB @I11@
+1 WIFE @I12@
+1 CHIL @I9@
+1 CHIL @I15@
+1 CHIL @I16@
+1 MARR
+2 DATE 1922
+2 PLAC Bendigo, Victoria, Australia
+0 @F9@ FAM
+1 HUSB @I17@
+1 WIFE @I18@
+1 CHIL @I10@
+0 @F10@ FAM
+1 HUSB @I13@
+1 WIFE @I14@
+1 CHIL @I11@
+1 MARR
+2 DATE 1885
+2 PLAC Bendigo, Victoria, Australia
+0 @F11@ FAM
+1 HUSB @I21@
+1 WIFE @I22@
+1 CHIL @I19@
+0 @S1@ SOUR
+1 TITL Victoria, Australia, Births Deaths and Marriages index
+1 ABBR VIC BDM
+0 @S2@ SOUR
+1 TITL Trove digitised newspapers (National Library of Australia)
+1 ABBR Trove
+0 @S3@ SOUR
+1 TITL Ireland, civil registration (irishgenealogy.ie)
+1 ABBR GRO Ireland
+0 @S4@ SOUR
+1 TITL Other researchers' member trees (unverified)
+1 ABBR member trees
+0 TRLR

@@ -1,0 +1,8 @@
+# real data never enters this repo: fixtures/ is the only place a .ged may live
+*.ged
+!fixtures/*.ged
+*.jsonl
+data/
+private/
+__pycache__/
+.DS_Store
