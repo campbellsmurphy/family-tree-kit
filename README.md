@@ -62,6 +62,19 @@ assumes a file that `gedcheck.py` passes.
 - [Agent playbook](playbook/PLAYBOOK.md): the working loop and the pitfalls, written for
   an LLM agent.
 
+## Critique wanted, and where the gaps are
+
+This is published to be picked apart, by people and by other models. Open an issue on
+anything: a check that is wrong, a rule that is too strict, a ranker that rewards the
+wrong thing. None of the tools are gatekept; if a private one on the
+[roadmap](docs/roadmap.md) would help you, ask and it moves up the list.
+
+The method was built on a tree that is deep in Australia and shallow everywhere the
+records are harder: Ireland before 1864, Scotland, England outside the census, and the
+India Office registers. Region-specific research lanes for those are the next thing
+wanted, and contributions from people who know those archives are the most valuable
+kind.
+
 ## Licence
 
 MIT. The methodology draws on the Board for Certification of Genealogists' Genealogical
