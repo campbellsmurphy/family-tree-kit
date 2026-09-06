@@ -16,6 +16,13 @@ Surveyed 2026-09-07. What exists, and what this kit borrows or deliberately does
 
 ## LLM and agent genealogy
 
+- mattprusak/autoresearch-genealogy (MIT, the most-starred prior art): an Obsidian research
+  template with a negative-search log, autonomous research prompts and archive guides for
+  Ireland, England and Wales, Scotland and Australia. Markdown only.
+- sliday/genealogy-research (MIT): the best negative-result model found. A nil must carry
+  place, years, denomination, record type and spellings, and be classed not-indexed,
+  not-online or coverage-unknown. `register.py` adopts that taxonomy.
+
 - Open-Genealogy / GRA (Steve Little), CC-BY-NC-SA-4.0. The most rigorous published
   playbook: three-layer evidence classification, five-element citations, a five-state
   confidence scale, hard never-fabricate rules. The NC licence means cite, do not copy.
@@ -58,7 +65,4 @@ Surveyed 2026-09-07. What exists, and what this kit borrows or deliberately does
 
 ## What is still missing from the ecosystem, and on this kit's roadmap
 
-- A JSON Schema for the research log and negative-search register, with an RLP-compatible
-  CSV export.
 - A living-people stripper as its own CLI with tests.
-- The jurisdiction registration-start table published with a methods note.

@@ -9,53 +9,71 @@ So the score multiplies two things:
   closeness      - how few generations up, i.e. how much of the tree hangs off them
   reachability   - whether records plausibly exist for that place and year
 
-Reachability uses civil-registration start dates per jurisdiction. Before the start date
-the answer is parish/church registers, which are patchy and often not online, so the score
-drops rather than going to zero.
+Reachability uses civil-registration start dates per jurisdiction, read from the sourced
+table tools/civil_registration.csv. Before the start date the answer is parish/church
+registers, which are patchy and often not online, so the score drops rather than going to
+zero; before any indexed register it bottoms out.
+
+With --register, the searched-corpus register adjusts the score: every controlled ABSENT
+nil lowers it (one reachable corpus is exhausted), while coverage-unknown, void and
+not-indexed rows leave it alone, because those gaps are still open.
 
 usage: python3 tools/gapranker.py <gedcom> --root @I1@ [--top 30] [--json]
 """
 import argparse
+import csv
 import json
+import os
 import re
 from collections import deque
 
 import gedlib
 
-# Civil registration begins. Year, and a label for the report.
-JURISDICTIONS = [
-    (r'victoria|vic\b',                      1853, 'Victoria'),
-    (r'new south wales|nsw\b',               1856, 'NSW'),
-    (r'queensland|qld\b',                    1856, 'Queensland'),
-    (r'south australia',                     1842, 'South Australia'),
-    (r'western australia|wa\b',              1841, 'Western Australia'),
-    (r'tasmania|van diemen',                 1838, 'Tasmania'),
-    (r'new zealand',                         1848, 'New Zealand'),
-    (r'scotland',                            1855, 'Scotland'),
-    (r'ireland|kerry|cork|limerick|clare',   1864, 'Ireland'),
-    (r'england|wales|london|lancashire',     1837, 'England & Wales'),
-    (r'india',                               1865, 'India (European returns)'),
-    (r'germany|prussia|bavaria',             1876, 'Germany'),
-    (r'denmark',                             1874, 'Denmark'),
-    (r'canada|ontario',                      1869, 'Canada (Ontario)'),
-]
+CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'civil_registration.csv')
+
+
+def load_jurisdictions(path=CSV):
+    """-> [(compiled pattern, civil_from, church_index_from, label)] from the sourced CSV."""
+    out = []
+    with open(path, encoding='utf-8') as fh:
+        for row in csv.DictReader(fh):
+            out.append((re.compile(row['pattern'], re.I), int(row['civil_from']),
+                        int(row['church_index_from']), row['jurisdiction']))
+    return out
+
+
+JURISDICTIONS = load_jurisdictions()
 
 
 def reachability(place, year):
     """-> (score 0..1, explanation). Unknown place is the worst case: nothing to search."""
     if not place:
         return (0.15, 'no birth place recorded')
-    low = place.lower()
-    for pattern, start, label in JURISDICTIONS:
-        if re.search(pattern, low):
+    for pattern, civil, church, label in JURISDICTIONS:
+        if pattern.search(place):
             if year is None:
                 return (0.45, f'{label}, no year')
-            if year >= start:
-                return (1.0, f'{label} civil reg from {start}')
-            gap = start - year
-            # Parish registers thin out the further back you go before civil registration.
-            return (max(0.2, 0.7 - gap / 200), f'{label}, {gap}y before civil reg {start}')
+            if year >= civil:
+                return (1.0, f'{label} civil reg from {civil}')
+            if year >= church:
+                gap = civil - year
+                # Church registers thin out the further back you go before civil registration.
+                return (max(0.2, 0.7 - gap / 200), f'{label}, {gap}y before civil reg {civil}, church index from {church}')
+            return (0.2, f'{label}, before any indexed register ({church})')
     return (0.35, 'jurisdiction not recognised')
+
+
+def search_state(pid, register_rows):
+    """What the register says about this person: counts by outcome class."""
+    c = {'hit': 0, 'absent': 0, 'coverage-unknown': 0, 'not-indexed': 0, 'not-online': 0, 'void': 0, 'unclear': 0}
+    key = pid.strip('@').lower()
+    for r in register_rows:
+        if (r.get('person') or '').strip('@').lower() != key:
+            continue
+        k = r.get('nil_class') if r.get('result') == 'nil' else r.get('result')
+        if k in c:
+            c[k] += 1
+    return c
 
 
 def inferred_place(pid, indis, fams):
@@ -104,10 +122,15 @@ def main():
     ap.add_argument('--top', type=int, default=30)
     ap.add_argument('--json', action='store_true')
     ap.add_argument('--all-rings', action='store_true', help='include ring-3 (beyond) people; default drops them')
+    ap.add_argument('--register', help='register.jsonl; controlled absent nils lower the score, unqualified nils do not')
     args = ap.parse_args()
 
     indis, fams = gedlib.load(args.gedcom)
     rings = gedlib.load_rings()
+    register_rows = []
+    if args.register and os.path.exists(args.register):
+        with open(args.register, encoding='utf-8') as fh:
+            register_rows = [json.loads(l) for l in fh if l.strip()]
     gen, parents_of = ancestors(indis, fams, args.root)
 
     rows = []
@@ -129,6 +152,11 @@ def main():
             why = f'{why} (via {via})'
         closeness = 1.0 / g
         score = closeness * reach
+        searched = search_state(pid, register_rows) if register_rows else None
+        if searched:
+            # Each controlled absent nil says one reachable corpus is exhausted for this person.
+            # Coverage-unknown, void and not-indexed rows leave the score alone: the gap is still open.
+            score *= 1.0 / (1.0 + 0.5 * searched['absent'])
         rows.append({
             'score': round(score, 4),
             'gen': g,
@@ -141,6 +169,7 @@ def main():
             'why': why,
             'sources': i['sources'],
             'ring': rings.get(pid, 0),
+            'searched': searched,
         })
     rows.sort(key=lambda r: -r['score'])
 
@@ -156,6 +185,8 @@ def main():
         print(f'{r["score"]:>6.3f} {r["gen"]:>3}  {str(r["born"] or "?"):>5}  '
               f'{r["sources"]:>3}  {r["name"]}')
         print(f'{"":>21}{r["place"] or "[no place]"}  -- {r["why"]}')
+        if r['searched'] and any(r['searched'].values()):
+            print(f'{"":>21}searched: ' + ', '.join(f'{k} {v}' for k, v in r['searched'].items() if v))
 
 
 if __name__ == '__main__':

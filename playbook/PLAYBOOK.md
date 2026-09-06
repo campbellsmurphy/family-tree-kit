@@ -36,8 +36,10 @@ to them, never round-trip from them. The wiki always wins.
    replace, single write, then structural check, counts, dangling refs, connectivity.
 5. **Cite** on the fact, with a quality grade and the fold date. A fold without a citation
    is not complete.
-6. **Register** every search, including nils, with the positive control that proves the
-   search worked. A zero returned while rate-limited is void, not a nil.
+6. **Register** every search with `register.py`, including nils. An absent nil needs the
+   positive control that proves the search worked; a nil in a corpus whose coverage you have
+   not established is coverage-unknown. A zero returned while rate-limited is void, not a nil.
+   Before calling a person exhausted, run `--exhausted` and read the verdict per corpus.
 7. **Log the hint decision** keyed on the record, not the hint id.
 8. **Report** the tally with the fraction: which side, which ring, how many were new versus
    already held.

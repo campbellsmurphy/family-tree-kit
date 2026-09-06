@@ -22,8 +22,9 @@ the repo.
 - **A fact is not folded until it carries a citation.** Prose notes hold the reasoning and
   the negatives. Structured citations hold what software can read.
 - **Everything searched is registered**, including what came back empty and what positive
-  control proved the search was working. The register is what stops an agent re-running the
-  same dry search next month.
+  control proved the search was working. "Not found" is four different facts (absent,
+  not indexed, not online, coverage unknown) and only a controlled absent closes a gap.
+  The register is what stops an agent re-running the same dry search next month.
 - **Decisions are keyed on the record, not on the platform's hint id.** Platform hints reset
   to zero every time a tree is rebuilt. A ledger outside the platform is the only memory.
 - **Spend follows the graph.** Rings computed from the tree decide who gets a deep dive,
@@ -37,8 +38,13 @@ the repo.
 | `tools/gedlint.py` | Does the file make sense? Impossible ages, parent-age outliers, duplicate people, unsourced people. Gramps-derived thresholds, all flags. |
 | `tools/gapranker.py` | Which end-of-line ancestor next? Closeness times record reachability, using civil-registration start dates per jurisdiction. |
 | `tools/rings.py` | Who is in scope? Ring 0 blood, 1 in-law, 2 in-law+1, 3 beyond, 4 imported. |
+| `tools/register.py` | Have we searched this person here, and what came back? Append-only JSONL with the qualified-negative taxonomy: an absent nil needs a positive control; coverage-unknown and void never close a gap. |
 | `tools/side_balance.py` | Is the tree lopsided, and is it a head start, an effort gap, or a records gap? |
 | `tools/privacy_scan.py` | Does anything private appear in the tracked files? |
+
+`tools/civil_registration.csv` is the sourced table of civil-registration and church-index
+start years per jurisdiction that the gap ranker reads. Nobody else publishes one; corrections
+with a source are the most welcome kind of pull request.
 
 `tools/gedlib.py` is the shared minimal reader: stdlib only, reads the tags the tools use,
 assumes a file that `gedcheck.py` passes.

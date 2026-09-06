@@ -9,6 +9,11 @@ What is ported, what is still in the private project, and what has never been bu
 - `side_balance.py`: new, written for this kit from the measurement in
   [research bias](research-bias.md).
 - `privacy_scan.py`: new.
+- `register.py`: the searched-corpus register, rewritten for the kit with the qualified-negative
+  taxonomy (from sliday/genealogy-research), a JSON Schema, an RLP-compatible CSV export, and
+  an `--exhausted` verdict per corpus. `gapranker.py --register` consumes it.
+- `civil_registration.csv`: the jurisdiction table, one source URL per row, replacing the
+  hand list inside gapranker.
 
 ## In the private project, to port next (in order of value)
 
@@ -16,20 +21,18 @@ What is ported, what is still in the private project, and what has never been bu
    `QUAY` block on a fact at fold time, with an `--audit` that lists facts with no citation
    and a `--verify` that checks the value against the citation. Needs its source-record
    templates generalised.
-2. **Searched-corpus register** (about 380 lines, JSONL). Add, query, stats; a nil result
-   requires a positive control. Port with a JSON Schema and an RLP-compatible CSV export.
-3. **Hint-decision ledger** (about 340 lines, JSONL). Keyed on platform, collection,
+2. **Hint-decision ledger** (about 340 lines, JSONL). Keyed on platform, collection,
    person, year, place; `--check <name>` before opening anyone; `--stats`.
-4. **Share-edition builder** (about 570 lines). Strips living people to bare identity,
+3. **Share-edition builder** (about 570 lines). Strips living people to bare identity,
    removes a named side by construction, removes every internal and sensitive string.
    Port as the missing living-people stripper CLI, with tests.
-5. **Upload artefact builder**: strips the imported tier and its pointers.
-6. **Tree views and typed queries** (`tree_views.py`, `tree_mcp.py`): project the tree
+4. **Upload artefact builder**: strips the imported tier and its pointers.
+5. **Tree views and typed queries** (`tree_views.py`, `tree_mcp.py`): project the tree
    into markdown a wiki search can serve, and answer `find_person`, `relationship_path`,
    `end_of_lines`, `stats`.
-7. **Novelty gate**: per-report verdicts of novel, already held, already searched, against
+6. **Novelty gate**: per-report verdicts of novel, already held, already searched, against
    the GEDCOM and the register.
-8. **Registry identifier resolver**: check a civil-registration number against the
+7. **Registry identifier resolver**: check a civil-registration number against the
    registry's own index before it is folded.
 
 ## Not portable, and why

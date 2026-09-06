@@ -17,8 +17,11 @@ against them.
    parent mismatch, weigh remarriage, widowhood and two-people explanations before
    accepting or rejecting. Split conflated people; leave unproven parentage unlinked with
    a sourced note saying why.
-5. **Document negatives.** "Confirmed absent from collection X under maiden and married
-   name, positive control returned rows" goes in the register so nothing is re-run.
+5. **Document negatives, and qualify them.** "Confirmed absent from collection X under
+   maiden and married name, positive control returned rows" goes in the register so nothing
+   is re-run. A nil without a control, or in a corpus whose coverage of that place and period
+   is unknown, is recorded as coverage-unknown and never closes a gap. A zero returned while
+   rate-limited is void, not a nil.
 6. **Flag conflicts, do not resolve them silently.** Two credible values get a note with
    both and what would decide between them.
 7. **Snapshot before every edit; verify after.** Counts, zero dangling references,
